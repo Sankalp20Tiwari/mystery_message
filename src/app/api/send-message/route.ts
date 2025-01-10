@@ -32,3 +32,5 @@ export async function POST(req: Request) {
         return Response.json({ success: false, message: "Failed to send message | Internal server error" }, { status: 500 })
     }
 }
+
+
