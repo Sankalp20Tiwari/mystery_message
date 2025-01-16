@@ -3,7 +3,6 @@ import {
     Card,
     CardContent,
     CardDescription,
-   
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
@@ -24,6 +23,8 @@ import { Message } from "@/model/User"
 import { useToast } from "@/hooks/use-toast"
 import { ApiResponse } from "@/types/ApiResponse"
 import axios from "axios"
+import dayjs from 'dayjs';
+
    
 type MessageCardProps ={
     message: Message,
@@ -42,11 +43,11 @@ const MessageCards = ({message , onMessageDelete} : MessageCardProps) => {
 
   return (
     <Card>
-    <CardHeader>
-        <CardTitle>Card Title</CardTitle>
+    <CardHeader >
+        <CardTitle>{message.content}</CardTitle>
         <AlertDialog>
         <AlertDialogTrigger asChild>
-            <Button variant="destructive"><X  className="h-4 w-4"/></Button>
+            <Button variant="destructive" className="h-8 w-8 "><X  className="h-4 w-4"/></Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogHeader>
@@ -62,7 +63,7 @@ const MessageCards = ({message , onMessageDelete} : MessageCardProps) => {
             </AlertDialogFooter>
         </AlertDialogContent>
         </AlertDialog>
-        <CardDescription>Card Description</CardDescription>
+        <CardDescription> {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')}</CardDescription>
     </CardHeader>
     <CardContent>    
     </CardContent>
