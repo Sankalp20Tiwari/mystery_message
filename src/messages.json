@@ -1,17 +1,52 @@
 [
-    {
-      "title": "Message from User123",
-      "content": "Hey, how are you doing today?",
-      "received": "10 minutes ago"
-    },
-    {
-      "title": "Message from SecretAdmirer",
-      "content": "I really liked your recent post!",
-      "received": "2 hours ago"
-    },
-    {
-      "title": "Message from MysteryGuest",
-      "content": "Do you have any book recommendations?",
-      "received": "1 day ago"
-    }
-  ]
+  {
+    "title": "Message from User123",
+    "content": "Hey, how are you doing today?",
+    "received": "10 minutes ago"
+  },
+  {
+    "title": "Message from SecretAdmirer",
+    "content": "I really liked your recent post!",
+    "received": "2 hours ago"
+  },
+  {
+    "title": "Message from MysteryGuest",
+    "content": "Do you have any book recommendations?",
+    "received": "1 day ago"
+  },
+  {
+    "title": "Message from CuriousMind",
+    "content": "What’s your favorite movie? I'm looking for something new to watch.",
+    "received": "3 days ago"
+  },
+  {
+    "title": "Message from TravelBuddy",
+    "content": "Any travel tips for a trip to Paris?",
+    "received": "5 days ago"
+  },
+  {
+    "title": "Message from MusicLover",
+    "content": "Have you checked out the new album from The Weekend? It's amazing!",
+    "received": "1 week ago"
+  },
+  {
+    "title": "Message from GamerDude",
+    "content": "Are you free to play tonight? Let’s team up!",
+    "received": "2 weeks ago"
+  },
+  {
+    "title": "Message from FriendFromCollege",
+    "content": "I’m organizing a reunion next month. Can you make it?",
+    "received": "3 weeks ago"
+  },
+  {
+    "title": "Message from BookWorm",
+    "content": "Just finished the book you recommended! It was fantastic!",
+    "received": "1 month ago"
+  },
+  {
+    "title": "Message from CodeMaster",
+    "content": "Can you help me debug my code? I’m stuck on a problem.",
+    "received": "2 months ago"
+  }
+]
