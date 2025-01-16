@@ -29,6 +29,11 @@ export async function GET(req: Request) {
             return Response.json({ success: false, message: "No messages found for this user" }, { status: 404 });
         }
 
+        const userDoc = await UserModel.findById(userId);
+        if (!userDoc || !userDoc.isAcceptingMessage) {
+            return Response.json({ success: false, message: "User is not accepting messages" }, { status: 403 });
+        }
+
         return Response.json({
             success: true,
             messages: user[0].messages

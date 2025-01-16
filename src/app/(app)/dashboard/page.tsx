@@ -61,6 +61,7 @@ function UserDashboard() {
       setIsSwitchLoading(false);
       try {
         const response = await axios.get<ApiResponse>('/api/get-messages');
+       
         setMessages(response.data.messages || []);
         if (refresh) {
           toast({
@@ -97,7 +98,7 @@ function UserDashboard() {
   const handleSwitchChange = async () => {
     try {
       const response = await axios.post<ApiResponse>('/api/accept-messages', {
-        acceptMessages: !acceptMessages,
+        acceptingMessage: !acceptMessages,
       });
       setValue('acceptMessages', !acceptMessages);
       toast({
