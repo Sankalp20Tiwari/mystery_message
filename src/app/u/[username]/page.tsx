@@ -118,7 +118,7 @@ export default function SendMessage() {
   };
 
   return (
-    <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
+    <div className="container mx-auto my-8 p-6 bg-black text-white rounded max-w-4xl">
       <h1 className="text-4xl font-bold mb-6 text-center">
         Public Profile Link
       </h1>
@@ -140,7 +140,7 @@ export default function SendMessage() {
                   <FormControl>
                     <Textarea
                       placeholder="Write your anonymous message here"
-                      className="resize-none"
+                      className="resize-none text-black"
                       {...field}
                     />
                   </FormControl>
@@ -155,7 +155,7 @@ export default function SendMessage() {
                   Please wait
                 </Button>
               ) : (
-                <Button type="submit" disabled={isLoading || !messageContent}>
+                <Button type="submit" disabled={isLoading || !messageContent} className='bg-white text-black'>
                   Send It
                 </Button>
               )}
@@ -169,18 +169,18 @@ export default function SendMessage() {
         <div className="space-y-2">
           <Button
             onClick={fetchSuggestedMessages}
-            className="my-4"
+            className="my-4 bg-white text-black hover:bg-gray-200"
             disabled={isSuggestLoading}
           >
             Suggest Messages
           </Button>
           <p>Click on any message below to select it.</p>
         </div>
-        <Card>
+        <Card className="bg-black text-white border-none" >
           <CardHeader>
             <h3 className="text-xl font-semibold">Messages</h3>
           </CardHeader>
-          <CardContent className="flex flex-col space-y-4">
+          <CardContent className="flex flex-col space-y-4 text-black">
             {error ? (
               <p className="text-red-500">{error.message}</p>
             ) : (
@@ -203,7 +203,7 @@ export default function SendMessage() {
       <div className="text-center">
         <div className="mb-4">Get Your Message Board</div>
         <Link href={'/sign-up'}>
-          <Button>Create Your Account</Button>
+          <Button className='w-full md:w-auto bg-white text-black hover:bg-gray-200'>Create Your Account</Button>
         </Link>
       </div>
     </div>
