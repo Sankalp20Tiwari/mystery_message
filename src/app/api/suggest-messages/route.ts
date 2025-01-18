@@ -3,7 +3,7 @@ import { streamText } from 'ai';
 import { NextResponse } from 'next/server';
 
 export const runtime = 'edge';
-export async function POST(req: Request) {
+export async function POST() {
   try {
     const prompt = `
       Create a list of three open-ended and engaging questions formatted as a single string. Each question should be separated by '||'.
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       Ensure the questions are intriguing, foster curiosity, and contribute to a positive and welcoming conversational environment.`;
 
     
-    const response = await streamText({
+    const response =  streamText({
       model: openai('gpt-4o'), 
       prompt,
     });

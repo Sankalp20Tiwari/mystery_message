@@ -1,7 +1,7 @@
 import { NextResponse , NextRequest } from "next/server";
 import  dbConnect from "@/lib/dbConnect";
 import User from "@/model/User";
-import { decode } from "punycode";
+
 
 export async function POST(req: NextRequest) {
     await dbConnect();

@@ -3,14 +3,13 @@ import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/hooks/use-toast"
-import { signUpSchema } from "@/schemas/signUpSchema"
 import { verifySchema } from "@/schemas/verifySchema"
 import { ApiResponse } from "@/types/ApiResponse"
 import { zodResolver } from "@hookform/resolvers/zod"
 import axios, { AxiosError } from "axios"
-import { Loader2 } from "lucide-react"
+
 import { useParams, useRouter } from 'next/navigation'
-import React, { use } from 'react'
+import React from 'react'
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
@@ -39,7 +38,7 @@ function VerifyAccount() {
         } catch (error) {
           console.error("Error signing up:", error)
           const axiosError = error as AxiosError<ApiResponse>
-          let errorMessage = axiosError.response?.data.message ?? "Error signing up"
+          const errorMessage = axiosError.response?.data.message ?? "Error signing up"
           toast({
             title: "Error",
             description: errorMessage,

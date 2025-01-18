@@ -1,15 +1,15 @@
 "use client"
 import React from 'react'
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-import messages from '@/messages.json'
-import Autoplay from "embla-carousel-autoplay"
+// import { Card, CardContent, CardHeader } from "@/components/ui/card"
+// import {
+//   Carousel,
+//   CarouselContent,
+//   CarouselItem,
+//   CarouselNext,
+//   CarouselPrevious,
+// } from "@/components/ui/carousel"
+// import messages from '@/messages.json'
+// import Autoplay from "embla-carousel-autoplay"
 import Link from 'next/link'
 
 const Home = () => {
@@ -95,13 +95,13 @@ const Home = () => {
           <h2 className='text-6xl font-bold'>What Our Users Say</h2>
           <div className='mt-8'>
             <blockquote className='italic text-gray-300'>
-              "Mystery Message is so fun! I can share my thoughts without revealing who I am. It’s a great way to connect with others anonymously!"
+              Mystery Message is so fun! I can share my thoughts without revealing who I am. It is a great way to connect with others anonymously!
             </blockquote>
-            <p className='mt-4 text-gray-400'>– Sarah, User</p>
+            <p className='mt-4 text-gray-400'> Sarah, User</p>
             <blockquote className='italic text-gray-300 mt-8'>
-              "I love the surprise of getting anonymous messages! It adds a unique thrill to my day."
+              I love the surprise of getting anonymous messages! It adds a unique thrill to my day.
             </blockquote>
-            <p className='mt-4 text-gray-400'>– John, User</p>
+            <p className='mt-4 text-gray-400'> John, User</p>
           </div>
         </section>
 
@@ -113,7 +113,7 @@ const Home = () => {
               Mystery Message was created with the goal of bringing fun, excitement, and intrigue to communication. Our platform allows people to share their thoughts, ideas, and emotions without the fear of judgment or exposure.
             </p>
             <p className='mt-4'>
-              Whether you're sending a funny message or sharing a deep secret, Mystery Message is the place where your identity stays hidden and your words can be heard.
+              Whether you are sending a funny message or sharing a deep secret, Mystery Message is the place where your identity stays hidden and your words can be heard.
             </p>
           </div>
         </section>
@@ -122,7 +122,7 @@ const Home = () => {
         <section className="mt-16 text-center text-white">
           <h2 className='text-3xl font-bold'>Join the Mystery Today!</h2>
           <p className='mt-4 text-xl text-gray-300'>
-            Ready to send your first anonymous message? It's quick and easy. Start now!
+            Ready to send your first anonymous message? It is quick and easy. Start now!
           </p>
           <Link href="/sign-in">
           <button className="mt-8 px-6 py-3 text-lg font-semibold text-white bg-black rounded-full border-2 border-white">
