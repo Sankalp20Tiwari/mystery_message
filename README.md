@@ -4,8 +4,9 @@
 
 The **Mystery Message** is a modern web application designed to facilitate user feedback collection and management. Built using **Next.js**, this application provides an intuitive and efficient way for users to share messages with other users anonymously, while also having the functionality to receive anonymous messages. The project emphasizes performance, scalability, and user experience.
 
-<iframe src="https://mystery-message-olive-psi.vercel.app/" width="100%" height="500px"></iframe>
+## 🖼️  Preview
 
+![Mystery Message Landing Page](public/landing-page.png)
 
 ## 🚀 Features
 
