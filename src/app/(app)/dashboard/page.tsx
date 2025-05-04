@@ -1,6 +1,6 @@
 'use client';
 
-import MessageCards  from '@/components/MessageCards';
+import MessageCards from '@/components/MessageCards';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
@@ -9,12 +9,13 @@ import { Message } from '@/model/User';
 import { ApiResponse } from '@/types/ApiResponse';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios, { AxiosError } from 'axios';
-import { Loader2, RefreshCcw } from 'lucide-react';
+import { Loader2, RefreshCcw, Link2, MessagesSquare } from 'lucide-react';
 import { User } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { acceptMessageSchema } from '@/schemas/acceptMessageSchema';
+import { motion } from 'framer-motion';
 
 function UserDashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -45,9 +46,7 @@ function UserDashboard() {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
         title: 'Error',
-        description:
-          axiosError.response?.data.message ??
-          'Failed to fetch message settings',
+        description: axiosError.response?.data.message ?? 'Failed to fetch message settings',
         variant: 'destructive',
       });
     } finally {
@@ -61,7 +60,6 @@ function UserDashboard() {
       setIsSwitchLoading(false);
       try {
         const response = await axios.get<ApiResponse>('/api/get-messages');
-       
         setMessages(response.data.messages || []);
         if (refresh) {
           toast({
@@ -73,8 +71,7 @@ function UserDashboard() {
         const axiosError = error as AxiosError<ApiResponse>;
         toast({
           title: 'Error',
-          description:
-            axiosError.response?.data.message ?? 'Failed to fetch messages',
+          description: axiosError.response?.data.message ?? 'Failed to fetch messages',
           variant: 'destructive',
         });
       } finally {
@@ -85,16 +82,13 @@ function UserDashboard() {
     [setIsLoading, setMessages, toast]
   );
 
-  // Fetch initial state from the server
   useEffect(() => {
     if (!session || !session.user) return;
 
     fetchMessages();
-
     fetchAcceptMessages();
-  }, [session, setValue, toast, fetchAcceptMessages, fetchMessages]);
+  }, [session, fetchAcceptMessages, fetchMessages]);
 
-  // Handle switch change
   const handleSwitchChange = async () => {
     try {
       const response = await axios.post<ApiResponse>('/api/accept-messages', {
@@ -109,9 +103,7 @@ function UserDashboard() {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
         title: 'Error',
-        description:
-          axiosError.response?.data.message ??
-          'Failed to update message settings',
+        description: axiosError.response?.data.message ?? 'Failed to update message settings',
         variant: 'destructive',
       });
     }
@@ -122,7 +114,6 @@ function UserDashboard() {
   }
 
   const { username } = session.user as User;
-
   const baseUrl = `${window.location.protocol}//${window.location.host}`;
   const profileUrl = `${baseUrl}/u/${username}`;
 
@@ -135,63 +126,124 @@ function UserDashboard() {
   };
 
   return (
-    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-black text-white rounded w-full max-w-6xl">
-      <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
+    <div className="my-20 mx-4 md:mx-8 lg:mx-auto p-8  text-white rounded-2xl w-full max-w-6xl shadow-lg">
+      {/* Header */}
+      <motion.h1 
+        className="text-4xl font-bold mb-6 text-center"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        Welcome to Your Dashboard
+      </motion.h1>
 
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>{' '}
+      {/* Profile Link */}
+      <motion.div 
+        className="mb-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
+        <h2 className="text-lg font-semibold mb-2 flex items-center gap-2">
+          <Link2 className="w-5 h-5 text-blue-400" />
+          Share Your Unique Profile Link
+        </h2>
         <div className="flex items-center">
           <input
             type="text"
             value={profileUrl}
             disabled
-            className="input input-bordered w-full p-2 mr-2"
+            className="input input-bordered w-full p-2 mr-2 bg-gray-800 border border-gray-700 rounded-lg"
           />
-          <Button onClick={copyToClipboard} className='bg-white text-black hover:bg-gray-200'>Copy</Button>
+          <Button 
+            onClick={copyToClipboard} 
+            className="bg-blue-500 text-white hover:bg-blue-600 transition-all duration-200"
+          >
+            Copy
+          </Button>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="mb-4">
+      {/* Accept Messages Switch */}
+      <div className="flex items-center mb-6">
         <Switch
           {...register('acceptMessages')}
           checked={acceptMessages}
           onCheckedChange={handleSwitchChange}
           disabled={isSwitchLoading}
-          className="mr-2 bg-black "
+          className="mr-2 bg-black"
         />
         <span className="ml-2">
-          Accept Messages: {acceptMessages ? 'On' : 'Off'}
+          {acceptMessages ? '✅ Accepting Messages' : '🚫 Not Accepting Messages'}
         </span>
       </div>
-      <Separator />
+      <Separator className="mb-6" />
 
-      <Button
-        className="mt-4 text-black bg-white hover:bg-gray-200"
-        variant="outline"
-        onClick={(e) => {
-          e.preventDefault();
-          fetchMessages(true);
+      {/* Refresh Button */}
+      <div className="flex justify-center mb-8">
+        <Button
+          className="flex items-center gap-2 bg-green-500 text-white hover:bg-green-600 transition-all duration-200"
+          onClick={(e) => {
+            e.preventDefault();
+            fetchMessages(true);
+          }}
+        >
+          {isLoading ? (
+            <Loader2 className="h-5 w-5 animate-spin" />
+          ) : (
+            <>
+              <RefreshCcw className="h-5 w-5" />
+              Refresh Messages
+            </>
+          )}
+        </Button>
+      </div>
+
+      {/* Messages Section */}
+      <div className="text-center mb-4">
+        <h2 className="text-2xl font-bold flex items-center justify-center gap-2 mb-2">
+          <MessagesSquare className="w-6 h-6 text-purple-400" />
+          Your Messages
+        </h2>
+        <p className="text-gray-400">Here’s what people are saying!</p>
+      </div>
+
+      {/* Message Cards */}
+      <motion.div 
+        className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.1,
+            },
+          },
         }}
       >
-        {isLoading ? (
-          <Loader2 className="h-4 w-4 animate-spin" />
-        ) : (
-          <RefreshCcw className="h-4 w-4" />
-        )}
-      </Button>
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
         {messages.length > 0 ? (
           messages.map((message, index) => (
-            <MessageCards
-              key={ index}
-              message={message}
-              onMessageDelete={handleDeleteMessage}
-            />
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <MessageCards
+                message={message}
+                onMessageDelete={handleDeleteMessage}
+              />
+            </motion.div>
           ))
         ) : (
-          <p>No messages to display.</p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-gray-500"
+          >
+            No messages to display.
+          </motion.p>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }
