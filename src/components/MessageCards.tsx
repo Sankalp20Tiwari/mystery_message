@@ -1,7 +1,6 @@
 "use client";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -17,13 +16,13 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "./ui/button";
-import { X, CalendarDays, MessageSquareText, Trash2 } from "lucide-react";
+import { CalendarDays, MessageSquareText, Trash2 } from "lucide-react";
 import { Message } from "@/model/User";
 import { useToast } from "@/hooks/use-toast";
 import { ApiResponse } from "@/types/ApiResponse";
 import axios from "axios";
 import dayjs from "dayjs";
-import Image from "next/image";
+
 
 type MessageCardProps = {
   message: Message;
