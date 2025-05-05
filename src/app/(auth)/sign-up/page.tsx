@@ -38,7 +38,7 @@ const SignUpPage = () => {
   const { toast } = useToast()
   const router = useRouter()
   
-  //debounce - not making request to backend at every key press , reduing server load
+  //debounce - not making request to backend at every key press , reducing server load
   const debounced = useDebounceCallback(setUsername,500)
   
    //zod implementation
@@ -183,7 +183,7 @@ const SignUpPage = () => {
                             {...field}
                             onChange={(e) => {
                               field.onChange(e)
-                              setUsername(e.target.value)
+                              debounced(e.target.value)
                             }}
                           />
                           {usernameMessage && (
