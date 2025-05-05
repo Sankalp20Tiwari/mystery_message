@@ -28,16 +28,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+        <head>
+          {/* Favicon link */}
+          <link rel="icon" href="/anonymous.png" />
+        </head>
       <AuthProvider>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
-      >
-        
+      >      
         {children}
         <Toaster />
       </body>
-      </AuthProvider>
-      
+      </AuthProvider>    
     </html>
   );
 }
