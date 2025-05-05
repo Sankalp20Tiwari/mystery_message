@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Sparkles, Send, MessageCircle, MailPlus, Lightbulb, Smile } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { CardHeader, CardContent, Card } from '@/components/ui/card';
+import { CardContent, Card } from '@/components/ui/card';
 import { useCompletion } from 'ai/react';
 import {
   Form,
@@ -38,7 +38,6 @@ export default function SendMessage() {
   const params = useParams<{ username: string }>();
   const username = params.username;
 
-  // Track if the user is accepting messages
   const [isAcceptingMessages, setIsAcceptingMessages] = useState(true);
 
   const {
@@ -70,31 +69,22 @@ export default function SendMessage() {
         ...data,
         username,
       });
-      console.log(response.data);
 
-      // Handle success or failure based on response from backend
       if (!response.data.success) {
         if (response.data.message === 'User is not accepting message') {
-          setIsAcceptingMessages(false); // User is not accepting messages
+          setIsAcceptingMessages(false);
         } else {
-          toast({
-            title: response.data.message,
-            variant: 'default',
-          });
+          toast({ title: response.data.message, variant: 'default' });
         }
       } else {
-        toast({
-          title: response.data.message,
-          variant: 'default',
-        });
+        toast({ title: response.data.message, variant: 'default' });
         form.reset({ ...form.getValues(), content: '' });
       }
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
         title: 'Error',
-        description:
-          axiosError.response?.data.message ?? 'Failed to send message',
+        description: axiosError.response?.data.message ?? 'Failed to send message',
         variant: 'destructive',
       });
     } finally {
@@ -106,27 +96,28 @@ export default function SendMessage() {
     try {
       complete('');
     } catch (error) {
-      console.error('Error fetching messages:', error);
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
         title: 'Error',
-        description:
-          axiosError.response?.data.message ?? 'Failed to fetch messages',
+        description: axiosError.response?.data.message ?? 'Failed to fetch messages',
         variant: 'destructive',
       });
     }
   };
 
   return (
-    <div className="container mx-auto my-8 p-6 bg-black text-white rounded max-w-4xl">
-      <h1 className="text-4xl font-bold mb-6 text-center">
-        Public Profile Link
+    <div className="container mx-auto my-8 p-6 rounded max-w-3xl bg-gradient-to-br from-zinc-900 via-black to-zinc-800 shadow-2xl text-white">
+      <h1 className="text-4xl font-bold mb-2 text-center flex items-center justify-center gap-2">
+        <Sparkles className="text-yellow-400 w-7 h-7" /> Public Profile Link
       </h1>
+      <p className="text-center text-gray-400 mb-6">
+        ✨ Leave an anonymous message for <span className="font-semibold text-white">@{username}</span>.  
+        Your words might just make their day!
+      </p>
 
-      {/* If user is not accepting messages, show this message */}
       {!isAcceptingMessages ? (
-        <div className="text-center text-red-500 mb-4">
-          User is not accepting messages at this time.
+        <div className="text-center text-red-400 text-lg mb-4 flex items-center justify-center gap-2">
+          <MailPlus className="w-5 h-5" /> User is not accepting messages right now.
         </div>
       ) : (
         <Form {...form}>
@@ -136,11 +127,13 @@ export default function SendMessage() {
               name="content"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Send Anonymous Message to @{username}</FormLabel>
+                  <FormLabel className="flex items-center gap-2 text-lg">
+                    <MessageCircle className="w-5 h-5 text-blue-400" /> Send Anonymous Message
+                  </FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Write your anonymous message here"
-                      className="resize-none text-black"
+                      placeholder="Write something thoughtful or fun..."
+                      className="resize-none text-white rounded-lg border-2 border-zinc-700 focus:ring-2 focus:ring-blue-500"
                       {...field}
                     />
                   </FormControl>
@@ -150,13 +143,17 @@ export default function SendMessage() {
             />
             <div className="flex justify-center">
               {isLoading ? (
-                <Button disabled>
+                <Button disabled className="bg-blue-500 text-white w-full md:w-auto">
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   Please wait
                 </Button>
               ) : (
-                <Button type="submit" disabled={isLoading || !messageContent} className='bg-white text-black'>
-                  Send It
+                <Button
+                  type="submit"
+                  disabled={isLoading || !messageContent}
+                  className="bg-blue-500 hover:bg-blue-600 text-white w-full md:w-auto flex items-center gap-2"
+                >
+                  <Send className="w-4 h-4" /> Send It
                 </Button>
               )}
             </div>
@@ -164,23 +161,22 @@ export default function SendMessage() {
         </Form>
       )}
 
-      {/* Suggested messages */}
-      <div className="space-y-4 my-8">
-        <div className="space-y-2">
+      {/* Suggested Messages Section */}
+      <div className="space-y-4 my-10">
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-semibold flex items-center gap-2">
+            <Lightbulb className="w-6 h-6 text-yellow-300" /> Suggested Messages
+          </h2>
           <Button
             onClick={fetchSuggestedMessages}
-            className="my-4 bg-white text-black hover:bg-gray-200"
+            className="bg-purple-600 hover:bg-purple-700 text-white flex items-center gap-2"
             disabled={isSuggestLoading}
           >
-            Suggest Messages
+            <Sparkles className="w-4 h-4" /> Get Ideas
           </Button>
-          <p>Click on any message below to select it.</p>
         </div>
-        <Card className="bg-black text-white border-none" >
-          <CardHeader>
-            <h3 className="text-xl font-semibold">Messages</h3>
-          </CardHeader>
-          <CardContent className="flex flex-col space-y-4 text-black">
+        <Card className="bg-zinc-900 border border-zinc-700 rounded-xl shadow-inner">
+          <CardContent className="flex flex-wrap gap-2 p-4">
             {error ? (
               <p className="text-red-500">{error.message}</p>
             ) : (
@@ -188,10 +184,10 @@ export default function SendMessage() {
                 <Button
                   key={index}
                   variant="outline"
-                  className="mb-2"
+                  className="border border-gray-600 text-white hover:bg-zinc-800 transition w-full md:w-auto text-sm flex items-center gap-1"
                   onClick={() => handleMessageClick(message)}
                 >
-                  {message}
+                  <Smile className="w-4 h-4 text-green-400" /> {message}
                 </Button>
               ))
             )}
@@ -199,14 +195,15 @@ export default function SendMessage() {
         </Card>
       </div>
 
-      <Separator className="my-6" />
+      <Separator className="my-6 bg-gray-700" />
       <div className="text-center">
-        <div className="mb-4">Get Your Message Board</div>
+        <p className="mb-4 text-gray-400">🚀 Want your own message board?</p>
         <Link href={'/sign-up'}>
-          <Button className='w-full md:w-auto bg-white text-black hover:bg-gray-200'>Create Your Account</Button>
+          <Button className="bg-green-500 hover:bg-green-600 text-black font-semibold w-full md:w-auto">
+            <MailPlus className="w-4 h-4 mr-1" /> Create Your Account
+          </Button>
         </Link>
       </div>
     </div>
   );
 }
-
