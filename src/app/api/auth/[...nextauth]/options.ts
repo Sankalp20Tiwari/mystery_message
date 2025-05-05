@@ -7,13 +7,14 @@ import User from "@/model/User";
 
 
 
+
 export const authOptions: NextAuthOptions = {
     providers: [
         CredentialsProvider({
             id:"credentials",
             name:"Credentials",
             credentials: {
-                email: { label: "Email", type: "text", placeholder: "email" },
+                identifier: { label: "Identifier", type: "text", placeholder: "email or username" },
                 password: { label: "Password", type: "password" }
               },
               async authorize(credentials:any): Promise<any> {
@@ -31,10 +32,13 @@ export const authOptions: NextAuthOptions = {
                     }
 
                     const isPasswordValid = await bcrypt.compare(credentials.password,user.password);
+                    //console.log('Password:', credentials.password);
+                    //console.log('Stored Password Hash:', user.password);
                     if(!isPasswordValid){
+                        console.error('Invalid password');
                         throw new Error("Invalid password");
                     }
-                    return user
+                    return user;
 
                 } catch (error:any) {
                     throw new Error(error)
