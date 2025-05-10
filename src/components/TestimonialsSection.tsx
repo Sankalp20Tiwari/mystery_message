@@ -80,7 +80,7 @@ const TestimonialsSection = () => {
               {/* User Info */}
               <div className="flex items-center mt-auto">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-mystery-400 to-mystery-600 flex items-center justify-center text-white font-bold">
-                  <Image width={40} height={40} src={testimonial.image} alt=""  className='w-10 h-10 rounded-full'/>
+                  <img  src={testimonial.image} alt="image"  className='w-10 h-10 rounded-full' />
                 </div>
                 <div className="ml-4">
                   <p className="font-semibold text-white">{testimonial.name}</p>
