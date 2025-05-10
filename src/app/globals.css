@@ -196,3 +196,9 @@ html {
   mask-composite: exclude;
   pointer-events: none;
 }
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #000 inset !important;
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 5000s ease-in-out 0s; /* Prevent flicker on focus */
+}
