@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import Image from 'next/image';
 
 const testimonials = [
   {
@@ -9,22 +10,22 @@ const testimonials = [
     name: "Sarah",
     role: "User",
     stars: 5,
-    image: "/sarah.jpg"
+    image: "https://randomuser.me/api/portraits/women/2.jpg"
   },
   {
     quote: "I love the surprise of getting anonymous messages! It adds a unique thrill to my day and has helped me make meaningful connections.",
     name: "John",
     role: "User",
     stars: 5,
-    image: "/john.jpg"
+    image: "https://randomuser.me/api/portraits/men/1.jpg"
   },
   {
     quote: "This platform helped me express feelings I was too shy to share otherwise. The anonymity is liberating and the interface is so easy to use!",
     name: "Maya",
     role: "User",
     stars: 5,
-    image: "/maya.jpg"
-  }
+    image: "https://randomuser.me/api/portraits/women/1.jpg"
+  },
 ];
 
 const TestimonialsSection = () => {
@@ -79,7 +80,7 @@ const TestimonialsSection = () => {
               {/* User Info */}
               <div className="flex items-center mt-auto">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-mystery-400 to-mystery-600 flex items-center justify-center text-white font-bold">
-                  {testimonial.name.charAt(0)}
+                  <Image width={40} height={40} src={testimonial.image} alt=""  className='w-10 h-10 rounded-full'/>
                 </div>
                 <div className="ml-4">
                   <p className="font-semibold text-white">{testimonial.name}</p>
@@ -89,6 +90,9 @@ const TestimonialsSection = () => {
             </motion.div>
           ))}
         </div>
+        <h1 className='text-2xl md:text-3xl font-bold text-center mt-12'>
+          <span className="text-mystery-400">Read more on </span><span className="text-white">Medium</span>
+        </h1>
       </div>
     </section>
   );
