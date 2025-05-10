@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { Rocket, Award, Heart, Shield } from "lucide-react";
+import Image from 'next/image';
 
 const AboutUsSection = () => {
   return (
@@ -24,7 +25,7 @@ const AboutUsSection = () => {
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-mystery-500 to-mystery-700 flex items-center justify-center animate-pulse-glow">
                 <div className="absolute inset-0 rounded-full backdrop-blur-lg bg-mystery-900/20 border border-mystery-500/30"></div>
                 <div className="relative z-10 p-10">
-                  <div className="text-6xl font-bold text-white">M</div>
+                  <div className="text-5xl font-bold text-center text-white">Mystery Message</div>
                 </div>
               </div>
               
