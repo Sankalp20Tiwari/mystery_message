@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import Image from 'next/image';
 
+
 const testimonials = [
   {
     quote: "Mystery Message is so fun! I can share my thoughts without revealing who I am. It's a great way to connect with others anonymously!",
@@ -25,6 +26,27 @@ const testimonials = [
     role: "User",
     stars: 5,
     image: "https://randomuser.me/api/portraits/women/1.jpg"
+  },
+  {
+    quote: "An amazing platform that encourages open and honest communication. I’ve had deep conversations I never thought possible.",
+    name: "Alex",
+    role: "User",
+    stars: 5,
+    image: "https://randomuser.me/api/portraits/men/3.jpg"
+  },
+  {
+    quote: "I was hesitant at first, but Mystery Message has become a safe space where I can share without judgment. Highly recommended!",
+    name: "Emily",
+    role: "User",
+    stars: 5,
+    image: "https://randomuser.me/api/portraits/women/5.jpg"
+  },
+  {
+    quote: "Simple, sleek, and impactful. This platform makes it easy to connect with people in a meaningful way, even anonymously.",
+    name: "David",
+    role: "User",
+    stars: 5,
+    image: "https://randomuser.me/api/portraits/men/5.jpg"
   },
 ];
 
@@ -80,7 +102,7 @@ const TestimonialsSection = () => {
               {/* User Info */}
               <div className="flex items-center mt-auto">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-mystery-400 to-mystery-600 flex items-center justify-center text-white font-bold">
-                  <img  src={testimonial.image} alt="image"  className='w-10 h-10 rounded-full' />
+                  <Image width={40} height={40}  src={testimonial.image} alt="image"  className='w-10 h-10 rounded-full' unoptimized/>
                 </div>
                 <div className="ml-4">
                   <p className="font-semibold text-white">{testimonial.name}</p>
