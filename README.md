@@ -6,7 +6,7 @@ The **Mystery Message** is a modern web application designed to facilitate user 
 
 ## 🖼️  Preview
 
-![Mystery Message Landing Page](public/landing-page.png)
+![Mystery Message Landing Page](public/landingPage.png)
 
 ## 🚀 Features
 
