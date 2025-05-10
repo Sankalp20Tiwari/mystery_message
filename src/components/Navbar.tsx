@@ -98,7 +98,7 @@ const Navbar = () => {
             ) : (
               <>
                   <Link href="/dashboard">
-                    <Button className="bg-mystery-600 hover:bg-mystery-700 text-white w-full   items-center justify-center hidden sm:block sm:flex">
+                    <Button className="bg-mystery-600 hover:bg-mystery-700 text-white w-full   items-center justify-center hidden  sm:flex">
                       <User2 className="w-4 h-4 mr-2" /> Dashboard
                     </Button>
                   </Link>
