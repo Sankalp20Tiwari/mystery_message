@@ -102,6 +102,7 @@ mystery_message/
 - **React-hook-form** - All forms are managed using React Hook Form
 - **Shadcn** - Responsive and clean UI with help of Shadcn
 - **Resend** - Mail functionality using Resend
+- **Framer-motion** - Animations and creativity
 
 ## 🤝 Contributing
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { Rocket, Award, Heart, Shield } from "lucide-react";
-import Image from 'next/image';
+
 
 const AboutUsSection = () => {
   return (
