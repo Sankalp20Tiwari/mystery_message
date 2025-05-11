@@ -44,10 +44,7 @@ const MessageCards = ({ message, onMessageDelete }: MessageCardProps) => {
 
   return (
     <Card className="relative border border-gray-800 bg-gradient-to-tr from-black via-gray-900 to-gray-800 text-white shadow-lg transition-transform hover:scale-[1.015] hover:shadow-xl rounded-2xl">
-      {/* Decorative icon background */}
-      <div className="absolute bottom-2 right-4 opacity-10 pointer-events-none">
-        <MessageSquareText className="w-8 h-8 text-white" />
-      </div>
+
 
       <CardHeader className="space-y-3">
         <div className="flex items-center justify-between">
@@ -56,7 +53,6 @@ const MessageCards = ({ message, onMessageDelete }: MessageCardProps) => {
             <span>{message.content}</span>
           </CardTitle>
 
-          {/* Delete Button */}
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button
