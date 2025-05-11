@@ -1,100 +1,110 @@
 'use client'
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Lock, Zap, Heart, Users,  Star } from 'lucide-react';
-import Image from 'next/image';
+import { Lock, Zap, Heart, Users, Star, Globe, MessageSquare, Sparkles, Shield } from 'lucide-react';
 
 interface FeatureCardProps {
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-    image: string;
-    index: number;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  index: number;
 }
 
-const FeatureCard = ({ icon, title, description, image, index } : FeatureCardProps) => {
+const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: index * 0.1 }}
-      viewport={{ once: true }}
-      className="rounded-xl overflow-hidden h-full"
-    >
-      <div className="h-full flex flex-col lg:flex-row bg-gradient-to-br from-mystery-900/90 to-mystery-800/80 backdrop-blur-sm border border-mystery-700/30">
-        <div className="w-full lg:w-1/2 p-8 flex flex-col justify-center">
-          <div className="p-3 mb-4 w-16 h-16 rounded-xl bg-mystery-900/60 border border-mystery-600/30 flex items-center justify-center">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: index * 0.05 }}
+        viewport={{ once: true }}
+        className="group rounded-2xl border border-mystery-700/40 p-6 hover:border-mystery-500/60 transition-all duration-300 backdrop-blur-md bg-mystery-800/30 relative overflow-hidden"
+        style={{
+          boxShadow:
+            '0 4px 20px rgba(0, 0, 0, 0.25), inset 0 0 30px rgba(255, 255, 255, 0.05)', // Softer shadow + inner glow
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)', // Soft glassy gradient
+          border: '2px solid mystery-700/40',
+        }}
+      >
+ 
+        <div className="absolute inset-0 rounded-2xl pointer-events-none before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-white/5 before:to-white/0 before:opacity-0 group-hover:before:opacity-100 before:transition-opacity before:duration-500" />
+
+        <div className="flex flex-col items-center text-center space-y-4 relative z-10">
+          <div className="p-3 rounded-xl bg-mystery-800/60 border border-mystery-700 flex items-center justify-center shadow-inner shadow-black/30 backdrop-blur-sm">
             {icon}
           </div>
-          <h3 className="text-2xl font-bold mb-4 text-white">{title}</h3>
-          <p className="text-gray-300">{description}</p>
+          <h3 className="text-lg font-semibold text-white">{title}</h3>
+          <p className="text-sm text-gray-300">{description}</p>
         </div>
-        <div className="w-full lg:w-1/2 h-48 lg:h-auto relative overflow-hidden">
-          <Image
-            src={image} 
-            alt={title} 
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-            width={500}
-            height={500}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-mystery-900/0 via-mystery-900/20 to-mystery-900/80"></div>
-        </div>
-      </div>
-    </motion.div>
+      </motion.div>
   );
 };
 
 const featuresData = [
   {
-    icon: <Lock className="w-8 h-8 text-mystery-400" />,
-    title: "Complete Anonymity",
-    description: "Our platform ensures your identity remains completely hidden. Send messages without revealing who you are and express your true thoughts freely.",
-    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1470&auto=format&fit=crop"
+    icon: <Lock className="w-6 h-6 text-mystery-400" />,
+    title: "Anonymity",
+    description: "Your identity always stays private.",
   },
   {
-    icon: <Zap className="w-8 h-8 text-mystery-400" />,
-    title: "Instant Delivery",
-    description: "Messages are delivered instantly to recipients. Our optimized system ensures your anonymous thoughts reach their destination without delay.",
-    image: "https://images.unsplash.com/photo-1555421689-d68471e189f2?q=80&w=1470&auto=format&fit=crop"
+    icon: <Zap className="w-6 h-6 text-mystery-400" />,
+    title: "Fast Delivery",
+    description: "Messages are delivered instantly.",
   },
   {
-    icon: <Users className="w-8 h-8 text-mystery-400" />,
-    title: "Global Community",
-    description: "Connect with users around the world. Our global community lets you interact with people from different cultures and backgrounds, all while staying anonymous.",
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1332&auto=format&fit=crop"
+    icon: <Users className="w-6 h-6 text-mystery-400" />,
+    title: "Global Reach",
+    description: "Connect with anyone worldwide.",
   },
   {
-    icon: <Heart className="w-8 h-8 text-mystery-400" />,
-    title: "Personalized Experience",
-    description: "Create your anonymous persona with customizable themes, avatars, and messaging styles that reflect your personality without revealing your identity.",
-    image: "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?q=80&w=1470&auto=format&fit=crop"
-  }
+    icon: <Heart className="w-6 h-6 text-mystery-400" />,
+    title: "Custom Profiles",
+    description: "Express yourself anonymously.",
+  },
+  {
+    icon: <Globe className="w-6 h-6 text-mystery-400" />,
+    title: "Cross-platform",
+    description: "Available on all devices.",
+  },
+  {
+    icon: <MessageSquare className="w-6 h-6 text-mystery-400" />,
+    title: "Rich Messaging",
+    description: "Send images, text & more.",
+  },
+  {
+    icon: <Sparkles className="w-6 h-6 text-mystery-400" />,
+    title: "Minimal Design",
+    description: "Clean and distraction-free UI.",
+  },
+  {
+    icon: <Shield className="w-6 h-6 text-mystery-400" />,
+    title: "Secure",
+    description: "End-to-end encrypted messages.",
+  },
 ];
 
 const FeaturesShowcase = () => {
   return (
     <section id="features-showcase" className="py-24 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(132,94,247,0.08)_0,rgba(0,0,0,0)_70%)]"></div>
-      
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(132,94,247,0.06)_0,rgba(0,0,0,0)_70%)]"></div>
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-16 max-w-2xl mx-auto"
         >
-          <div className="inline-block p-3 rounded-2xl bg-mystery-900/60 backdrop-blur-sm border border-mystery-700/30 mb-4">
+          <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-mystery-900/60 backdrop-blur-sm border border-mystery-700/30 mb-4">
             <Star className="w-8 h-8 text-mystery-400" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">Premium Features</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Discover what makes Mystery Message the leading platform for anonymous communication.
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Premium Features</h2>
+          <p className="text-lg text-gray-400">
+            Experience powerful tools designed for secure, anonymous communication.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuresData.map((feature, index) => (
             <FeatureCard key={index} {...feature} index={index} />
           ))}
