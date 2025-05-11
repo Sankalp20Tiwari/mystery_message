@@ -156,7 +156,7 @@ function UserDashboard() {
           />
           <Button 
             onClick={copyToClipboard} 
-            className="bg-blue-500 text-white hover:bg-blue-600 transition-all duration-200"
+            className="bg-mystery-500 text-white hover:bg-violet-600 transition-all duration-200"
           >
             Copy
           </Button>
@@ -181,7 +181,7 @@ function UserDashboard() {
       {/* Refresh Button */}
       <div className="flex justify-center mb-8">
         <Button
-          className="flex items-center gap-2 bg-green-500 text-white hover:bg-green-600 transition-all duration-200"
+          className="flex items-center gap-2 bg-mystery-500 text-white hover:bg-green-600 transition-all duration-200"
           onClick={(e) => {
             e.preventDefault();
             fetchMessages(true);
