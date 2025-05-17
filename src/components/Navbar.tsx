@@ -57,11 +57,21 @@ const Navbar = () => {
           >
             {!session && !isAuthPage && (
               <>
-                <a href="#features" className="text-gray-300 hover:text-mystery-400 transition-colors duration-300">Features</a>
-                <a href="#how-it-works" className="text-gray-300 hover:text-mystery-400 transition-colors duration-300">How It Works</a>
-                <a href="#testimonials" className="text-gray-300 hover:text-mystery-400 transition-colors duration-300">Testimonials</a>
-                <a href="#about" className="text-gray-300 hover:text-mystery-400 transition-colors duration-300">About</a>
-                <a href="#faq" className="text-gray-300 hover:text-mystery-400 transition-colors duration-300">FAQ</a>
+                {[
+                  { href: "#features", label: "Features" },
+                  { href: "#how-it-works", label: "How It Works" },
+                  { href: "#testimonials", label: "Testimonials" },
+                  { href: "#about", label: "About" },
+                  { href: "#faq", label: "FAQ" },
+                ].map(({ href, label }) => (
+                  <a
+                    key={href}
+                    href={href}
+                    className="text-gray-300 hover:text-mystery-400 py-2 transition-colors duration-300"
+                  >
+                    {label}
+                  </a>
+                ))}
               </>
             )}
             {session && (
@@ -131,7 +141,7 @@ const Navbar = () => {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-black/90 backdrop-blur-xl overflow-hidden"
+            className="md:hidden bg-transparent backdrop-blur-md overflow-hidden"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
               {session && (
@@ -142,30 +152,51 @@ const Navbar = () => {
               
               {!session && !isAuthPage && (
                 <>
-                  <a href="#features" className="text-gray-300 hover:text-mystery-400 py-2 transition-colors duration-300">Features</a>
-                  <a href="#how-it-works" className="text-gray-300 hover:text-mystery-400 py-2 transition-colors duration-300">How It Works</a>
-                  <a href="#testimonials" className="text-gray-300 hover:text-mystery-400 py-2 transition-colors duration-300">Testimonials</a>
-                  <a href="#about" className="text-gray-300 hover:text-mystery-400 py-2 transition-colors duration-300">About</a>
-                  <a href="#faq" className="text-gray-300 hover:text-mystery-400 py-2 transition-colors duration-300">FAQ</a>
+                  {[
+                    { id: "features", label: "Features" },
+                    { id: "how-it-works", label: "How It Works" },
+                    { id: "testimonials", label: "Testimonials" },
+                    { id: "about", label: "About" },
+                    { id: "faq", label: "FAQ" },
+                  ].map(({ id, label }) => (
+                    <button
+                      key={id}
+                      onClick={() => {
+                        const el = document.getElementById(id);
+                        if (el) {
+                          setMobileMenuOpen(false);
+                          setTimeout(() => {
+                            el.scrollIntoView({ behavior: "smooth", block: "start" });
+                          }, 100);
+                        }
+                      }}
+                      className="text-left w-full text-gray-300 hover:text-mystery-400 py-2 transition-colors duration-300"
+                    >
+                      {label}
+                    </button>
+                  ))}
                 </>
               )}
               
               {!session ? (
                 <>
                   <Link href="/sign-in">
-                    <Button className="bg-mystery-600 hover:bg-mystery-700 text-white w-full mt-2 flex items-center justify-center">
+                    <Button className="bg-mystery-600 hover:bg-mystery-700 text-white w-full mt-2 flex items-center justify-center"
+                    onClick={() => setMobileMenuOpen(false)}>
                       <LogIn className="w-4 h-4 mr-2" /> Login
                     </Button>
                   </Link>
                   <Link href="/sign-up">
-                    <Button className="bg-mystery-500 hover:bg-mystery-600 text-white w-full mt-2 flex items-center justify-center">
+                    <Button className="bg-mystery-500 hover:bg-mystery-600 text-white w-full mt-2 flex items-center justify-center"
+                    onClick={() => setMobileMenuOpen(false)}>
                       <UserPlus className="w-4 h-4 mr-2" /> Sign Up
                     </Button>
                   </Link>
                 </>
               ) : (<div className='flex flex-col gap-2 px-4'>
                   <Link href="/dashboard">
-                    <Button className="bg-mystery-600 hover:bg-mystery-700 text-white w-full mt-2 flex items-center justify-center">
+                    <Button className="bg-mystery-600 hover:bg-mystery-700 text-white w-full mt-2 flex items-center justify-center"
+                    onClick={() => setMobileMenuOpen(false)}>
                       <User2 className="w-4 h-4 mr-2" /> Dashboard
                     </Button>
                   </Link>
