@@ -1,16 +1,16 @@
-'use client'
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Lock, Zap, Heart, Users, Star, Globe, MessageSquare, Sparkles, Shield } from 'lucide-react';
+import {  Star } from 'lucide-react';
+import Image from 'next/image';
 
 interface FeatureCardProps {
-  icon: React.ReactNode;
+  image: string;
   title: string;
   description: string;
   index: number;
 }
 
-const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
+const FeatureCard = ({ image, title, description, index }: FeatureCardProps) => {
   return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -30,7 +30,8 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
 
         <div className="flex flex-col items-center text-center space-y-4 relative z-10">
           <div className="p-3 rounded-xl bg-mystery-800/60 border border-mystery-700 flex items-center justify-center shadow-inner shadow-black/30 backdrop-blur-sm">
-            {icon}
+
+            <Image src={image || ''} alt={title} width={100} height={100} className="w-12 h-12" />
           </div>
           <h3 className="text-lg font-semibold text-white">{title}</h3>
           <p className="text-sm text-gray-300">{description}</p>
@@ -41,42 +42,42 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
 
 const featuresData = [
   {
-    icon: <Lock className="w-6 h-6 text-mystery-400" />,
+    image: '/anonymous.png',
     title: "Anonymity",
     description: "Your identity always stays private.",
   },
   {
-    icon: <Zap className="w-6 h-6 text-mystery-400" />,
+    image:'/quick.png',
     title: "Fast Delivery",
     description: "Messages are delivered instantly.",
   },
   {
-    icon: <Users className="w-6 h-6 text-mystery-400" />,
+    image:'/targeting.png',
     title: "Global Reach",
     description: "Connect with anyone worldwide.",
   },
   {
-    icon: <Heart className="w-6 h-6 text-mystery-400" />,
+    image: '/character.png',
     title: "Custom Profiles",
     description: "Express yourself anonymously.",
   },
   {
-    icon: <Globe className="w-6 h-6 text-mystery-400" />,
+    image:'/cross-platform.png',
     title: "Cross-platform",
     description: "Available on all devices.",
   },
   {
-    icon: <MessageSquare className="w-6 h-6 text-mystery-400" />,
+    image: "/chat.png",
     title: "Rich Messaging",
     description: "Send images, text & more.",
   },
   {
-    icon: <Sparkles className="w-6 h-6 text-mystery-400" />,
+    image: '/website-layout.png',
     title: "Minimal Design",
     description: "Clean and distraction-free UI.",
   },
   {
-    icon: <Shield className="w-6 h-6 text-mystery-400" />,
+    image: '/cyber-security.png',
     title: "Secure",
     description: "End-to-end encrypted messages.",
   },
